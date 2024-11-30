@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection</title>
+    <style>
+        body {
+            background-image: url('https://cambridge-intelligence.com/wp-content/uploads/2024/02/credit-card-fraud-featured.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 50px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 60%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+        }
+        label {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2em;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Fraud Detection</h1>
+        <form action="/predict" method="POST">
+            <label for="cc_num">Credit Card Number</label>
+            <input type="text" name="cc_num" id="cc_num" required>
+
+            <label for="category">Category</label>
+            <input type="text" name="category" id="category" required>
+
+            <label for="amt">Amount:</label><br>
+            <input type="number" id="amt" name="amt" step="0.01" required><br>
+
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select><br>
+
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" required>
+
+            <label for="state">State</label>
+            <input type="text" name="state" id="state" required>
+
+            <label for="zip">ZIP Code</label>
+            <input type="text" name="zip" id="zip" required>
+
+            <button type="submit">Predict Fraud</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                <p>{{ prediction_text }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
